@@ -8,7 +8,7 @@ icacls C:\Windows\System32\*.* /grant:r %username%:(OI)(CI)(F) /t
 echo Full control has been granted.
 pause
 
-REM or 
+REM or
 
 echo off
 cls
