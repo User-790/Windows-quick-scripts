@@ -1,0 +1,21 @@
+@echo off
+echo Taking ownership of System32 files...
+pause
+takeown /f C:\Windows\System32\*.* /r /d y
+echo Ownership has been taken. Granting full control...
+pause
+icacls C:\Windows\System32\*.* /grant:r %username%:(OI)(CI)(F) /t
+echo Full control has been granted.
+pause
+
+#or 
+
+echo off
+cls
+for /f "tokens=2* delims= " %%a in ('findstr /c:"/INHERITANCE:e" ^<%windir%\repair\system *') do (
+ icacls "%%a" /reset
+ icacls "%%a" /inheritance:e
+ icacls "%%a" /grant:r "%username%":(OI)(CI)F
+)
+echo "Process Completed Successfully"
+pause
