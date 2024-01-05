@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run]
+"Your Program Name"="C:\\path\\to\\your\\program.exe"
+; Save this as a .reg file to use once all modifications are done.
